@@ -73,6 +73,10 @@ export default function useMetrics() {
       setMetrics(prev => [...prev.slice(-19), data]);
     });
 
+    console.log("🔥 SOCKET_URL:", SOCKET_URL);
+    console.log("🔥 typeof io:", typeof io);
+    console.log("🔥 VITE_API_URL:", import.meta.env.VITE_API_URL);
+
     // 🔚 Cleanup
     return () => {
       console.log('🔌 Disconnecting socket...');
