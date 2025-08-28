@@ -1,3 +1,9 @@
-METRICS_ENDPOINT = 'http://localhost:4000/api/metrics'
+import os
+
+# Use environment variable for deployment, fallback to localhost for development
+METRICS_ENDPOINT = os.getenv('METRICS_ENDPOINT', 'https://your-render-app.onrender.com/api/metrics')
 DEVICE_ID = 'device-12345-levi'
-INTERVAL = 2 #In Seconds
+INTERVAL = 2  # In Seconds
+
+# For local testing, you can override:
+# METRICS_ENDPOINT = 'http://localhost:4000/api/metrics'
