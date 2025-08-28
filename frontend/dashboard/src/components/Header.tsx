@@ -1,5 +1,3 @@
-import React from "react";
-
 const Header = () => {
   return (
     <div className="bg-gray-50 rounded-lg w-full py-3 px-5 mb-6">

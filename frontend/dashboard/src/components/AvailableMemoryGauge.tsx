@@ -38,7 +38,7 @@ const AvailableMemoryGauge: React.FC<AvailableMemoryGaugeProps> = ({
             dataKey="value"
             paddingAngle={2}
           >
-            {data.map((entry, idx) => (
+            {data.map((_, idx) => (
               <Cell key={`cell-${idx}`} fill={COLORS[idx]} />
             ))}
           </Pie>

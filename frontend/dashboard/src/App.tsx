@@ -7,7 +7,7 @@ import AvailableMemoryGauge from "./components/AvailableMemoryGauge";
 import CpuDualAxisChart from "./components/CpuDualAxisChart";
 
 function App() {
-  const { metrics, connectionStatus } = useMetrics();
+  const { metrics } = useMetrics(); // Only destructure what we need
   const latest = metrics[metrics.length - 1];
   console.log(latest);
 
