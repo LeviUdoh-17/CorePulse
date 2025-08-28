@@ -1,7 +1,7 @@
 import os
 
 # Use environment variable for deployment, fallback to localhost for development
-METRICS_ENDPOINT = os.getenv('METRICS_ENDPOINT', 'https://your-render-app.onrender.com/api/metrics')
+METRICS_ENDPOINT = os.getenv('METRICS_ENDPOINT', 'https://corepulse.onrender.com/api/metrics')
 DEVICE_ID = 'device-12345-levi'
 INTERVAL = 2  # In Seconds
 

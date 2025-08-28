@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 // Environment-aware CORS configuration
 const allowedOrigins = process.env.NODE_ENV === 'production' 
-  ? [process.env.FRONTEND_URL || 'https://your-app.vercel.app'] 
+  ? [process.env.FRONTEND_URL || 'https://core-pulse.vercel.app'] 
   : ['http://localhost:5173', 'http://localhost:3000'];
 
 const io = new Server(server, {
@@ -26,6 +26,7 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
+console.log('✅ Allowed CORS origins:', allowedOrigins);
 
 // Health check endpoint for Render
 app.get('/health', (req, res) => {
