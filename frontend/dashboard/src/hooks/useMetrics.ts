@@ -30,6 +30,7 @@ export default function useMetrics() {
       path: '/socket.io',
       transports: ['websocket'],
       secure: true,
+      reconnection: true,
     });
 
     // 🔍 Expose for browser debugging
