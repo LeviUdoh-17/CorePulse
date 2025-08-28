@@ -18,6 +18,7 @@ const allowedOrigins = process.env.NODE_ENV === 'production'
 console.log('✅ Allowed CORS origins:', allowedOrigins);
 
 const io = new Server(server, {
+  path: '/socket.io/',
   cors: {
     origin: allowedOrigins,
     methods: ["GET", "POST"],
