@@ -27,8 +27,9 @@ export default function useMetrics() {
     console.log("🌍 Attempting to connect to Socket.io server at:", SOCKET_URL);
 
     const socket: Socket = io(SOCKET_URL, {
-      transports: ['websocket', 'polling'],
-      timeout: 5000,
+      path: '/socket.io',
+      transports: ['websocket'],
+      secure: true,
     });
 
     // 🔍 Expose for browser debugging
