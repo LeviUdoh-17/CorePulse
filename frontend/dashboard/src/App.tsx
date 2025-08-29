@@ -9,6 +9,17 @@ import CpuDualAxisChart from "./components/CpuDualAxisChart";
 function App() {
   const { metrics } = useMetrics(); // Only destructure what we need
   const latest = metrics[metrics.length - 1];
+
+if (!latest) {
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="text-center">
+        <p className="text-lg font-medium text-gray-700 mb-2">Connecting to CorePulse...</p>
+        <p className="text-sm text-gray-400">Waiting for system metrics to arrive.</p>
+      </div>
+    </div>
+  );
+}
   console.log(latest);
 
   return (
@@ -60,9 +71,7 @@ function App() {
               <div className="relative  w-full rounded-3xl overflow-hidden bg-white/10 backdrop-blur-xl shadow-xl shadow-white/10 pt-3 pb-1 px-4 flex flex-col justify-end ">
                 <div className="text-white">
                   <p className="text-lg font-semibold">Levi Udoh</p>
-                  <p className="text-sm text-white/70">
-                    {latest.device_id}
-                  </p>
+                  <p className="text-sm text-white/70">{latest.device_id}</p>
                 </div>
                 <div className="absolute top-6 right-4 bg-white/20 backdrop-blur-md rounded-full px-3 py-1 text-sm font-semibold text-black">
                   Windows
