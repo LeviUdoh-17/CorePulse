@@ -17,6 +17,7 @@ export interface Metric {
 
 // 👇 Confirm VITE_API_URL is loaded correctly
 const SOCKET_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+localStorage.debug = '*';  // Enable socket.io debug mode
 console.log("🧪 SOCKET_URL from Vite env:", SOCKET_URL);
 
 export default function useMetrics() {
@@ -27,10 +28,14 @@ export default function useMetrics() {
     console.log("🌍 Attempting to connect to Socket.io server at:", SOCKET_URL);
 
     const socket: Socket = io(SOCKET_URL, {
-      path: '/socket.io',
-      transports: ['websocket'],
+      path: '/socket.io/',  // Note the trailing slash
+      transports: ['websocket', 'polling'],  // Allow fallback to polling
       secure: true,
       reconnection: true,
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000,
+      timeout: 20000,
+      forceNew: true
     });
 
     // 🔍 Expose for browser debugging
@@ -84,6 +89,21 @@ export default function useMetrics() {
       console.log('🔌 Disconnecting socket...');
       socket.disconnect();
     };
+  }, []);
+
+  useEffect(() => {
+    // Fetch initial data
+    const fetchInitialMetrics = async () => {
+      try {
+        const response = await fetch(`${SOCKET_URL}/api/metrics`);
+        const data = await response.json();
+        setMetrics(data);
+      } catch (error) {
+        console.error('Failed to fetch initial metrics:', error);
+      }
+    };
+
+    fetchInitialMetrics();
   }, []);
 
   // 📦 Expose debug info to console
